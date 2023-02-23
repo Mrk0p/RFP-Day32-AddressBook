@@ -1,7 +1,6 @@
 //  create database address_book.
 
 
-
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -87,3 +86,29 @@ mysql> describe person_details;
 mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
     ->  ('Raj','Varma','jsquare','jaipur','Gujarat',44052,8956237421,'rajvarma11@gmailcom');
 Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Rohan','Sharma','Msquare','jaipur','Gujarat',440526,9764237421,'rohansharma32@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Raj       | Varma    | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> update person_details set FirstName = "Jojo",LastName = "Roma" where (FirstName = "Raj");
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
