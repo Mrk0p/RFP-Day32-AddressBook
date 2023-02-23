@@ -164,3 +164,19 @@ mysql> select * from person_details where City = "Shimla" or State = "Himachal P
 | Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom |
 +-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
 1 row in set (0.00 sec)
+
+mysql>  select count(City) from person_details where City = "jaipur";
++-------------+
+| count(City) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>  select count(State) from person_details where State = "Gujarat";
++--------------+
+| count(State) |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
