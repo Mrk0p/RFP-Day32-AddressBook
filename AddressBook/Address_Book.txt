@@ -146,3 +146,21 @@ mysql> select * from person_details;
 | Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
 +-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
 3 rows in set (0.00 sec)
+
+
+mysql> select * from person_details where City = "jaipur" or State = "Gujarat";
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from person_details where City = "Shimla" or State = "Himachal Pradesh";
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+| FirstName | LastName | Address | City   | State            | Zip    | PhoneNumber | Email                |
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+| Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom |
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+1 row in set (0.00 sec)
