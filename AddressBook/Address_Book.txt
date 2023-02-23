@@ -1,0 +1,324 @@
+//  create database address_book.
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| person             |
+| personid           |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> create database address_book;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| information_schema |
+| mysql              |
+| payroll_service    |
+| performance_schema |
+| person             |
+| personid           |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use address_book
+Database changed
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| address_book |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> create table person_details
+    -> (
+    -> FirstName varchar(150) NOT NULL,
+    -> LastName varchar(150) NOT NULL,
+    -> Address varchar(250) NOT NULL,
+    -> City varchar(250) NOT NULL,
+    -> State varchar(250) NOT NULL,
+    -> ZIP int NOT NULL,
+    -> PhoneNumber long NOT NULL,
+    -> Email varchar(250) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_address_book |
++------------------------+
+| person_details         |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe person_details;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| FirstName   | varchar(150) | NO   |     | NULL    |       |
+| LastName    | varchar(150) | NO   |     | NULL    |       |
+| Address     | varchar(250) | NO   |     | NULL    |       |
+| City        | varchar(250) | NO   |     | NULL    |       |
+| State       | varchar(250) | NO   |     | NULL    |       |
+| ZIP         | int          | NO   |     | NULL    |       |
+| PhoneNumber | mediumtext   | NO   |     | NULL    |       |
+| Email       | varchar(250) | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Raj','Varma','jsquare','jaipur','Gujarat',44052,8956237421,'rajvarma11@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Rohan','Sharma','Msquare','jaipur','Gujarat',440526,9764237421,'rohansharma32@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Raj       | Varma    | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> update person_details set FirstName = "Jojo",LastName = "Roma" where (FirstName = "Raj");
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Bill','Mark','Psquare','jodhpur','Rajasthan',430045,8556638423,'billmark25@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Ravi','rajan','Ksquare','Shimla','Himachal Pradesh',440098,5464237421,'ravirajan56@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City    | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur  | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur  | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Bill      | Mark     | Psquare | jodhpur | Rajasthan        | 430045 | 8556638423  | billmark25@gmailcom    |
+| Ravi      | rajan    | Ksquare | Shimla  | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+4 rows in set (0.00 sec)
+
+
+mysql> delete from person_details where (FirstName = "Bill");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from person_details where City = "jaipur" or State = "Gujarat";
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from person_details where City = "Shimla" or State = "Himachal Pradesh";
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+| FirstName | LastName | Address | City   | State            | Zip    | PhoneNumber | Email                |
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+| Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom |
++-----------+----------+---------+--------+------------------+--------+-------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql>  select count(City) from person_details where City = "jaipur";
++-------------+
+| count(City) |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql>  select count(State) from person_details where State = "Gujarat";
++--------------+
+| count(State) |
++--------------+
+|            2 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from person_details where ( City = "jaipur" or State = " Gujarat") order by FirstName ASC;
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State   | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
++-----------+----------+---------+--------+---------+--------+-------------+------------------------+
+2 rows in set (0.00 sec)
+
+
+
+
+mysql> alter table person_details add Type varchar(250) after La
+stName;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+mysql> alter table person_details add Name varchar(250) after Ty
+pe;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe person_details;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| FirstName   | varchar(150) | YES  |     | NULL    |       |
+| LastName    | varchar(150) | YES  |     | NULL    |       |
+| Type        | varchar(250) | YES  |     | NULL    |       |
+| Name        | varchar(250) | YES  |     | NULL    |       |
+| Address     | varchar(250) | YES  |     | NULL    |       |
+| City        | varchar(250) | YES  |     | NULL    |       |
+| State       | varchar(250) | YES  |     | NULL    |       |
+| Zip         | int          | YES  |     | NULL    |       |
+| PhoneNumber | mediumtext   | YES  |     | NULL    |       |
+| Email       | varchar(250) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+mysql> update person_details set Type = "Family" where FirstName
+= "Jojo";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update person_details set Type = "Friend" where FirstName= "Rohan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update person_details set Type = "profession" where First
+Name= "Ravi";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from person_details;
++-----------+----------+------------+---------+--------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Type       | Address | City   | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+------------+---------+--------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | Family     | jsquare | jaipur | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Friend     | Msquare | jaipur | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Ravi      | rajan    | profession | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+------------+---------+--------+------------------+--------+-------------+------------------------+
+3 rows in set (0.00 sec)
+
+
+
+ rows update person_details set Name = "Roza" where FirstName = "Jojo";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> update person_details set Name = "Priya" where FirstName
+= "Rohan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update person_details set Name = "Madhu" where FirstName
+= "Ravi";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from person_details;
++-----------+----------+------------+-------+---------+--------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Type       | Name  | Address | City   | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+------------+-------+---------+--------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | Family     | Roza  | jsquare | jaipur | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Friend     | Priya | Msquare | jaipur | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Ravi      | rajan    | profession | Madhu | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+------------+-------+---------+--------+------------------+--------+-------------+------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(Type) from person_details where Type = "Friend";
++-------------+
+| count(Type) |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Type) from person_details where Type = "Family";
++-------------+
+| count(Type) |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Type) from person_details where Type = "profession";
++-------------+
+| count(Type) |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+
+mysql> update person_details set Name = "JoJo Friend" where FirstName = "Jojo";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update person_details set Name = "Rohan Family" where FirstName = "Rohan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update person_details set Name = "Rohan Profession" where FirstName = "Ravi";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from person_details;
++-----------+----------+------------+------------------+---------+--------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Type       | Name             | Address | City   | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+------------+------------------+---------+--------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | Family     | JoJo Friend      | jsquare | jaipur | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Friend     | Rohan Family     | Msquare | jaipur | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Ravi      | rajan    | profession | Rohan Profession | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+------------+------------------+---------+--------+------------------+--------+-------------+------------------------+
+3 rows in set (0.00 sec)
