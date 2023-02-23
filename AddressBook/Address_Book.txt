@@ -1,6 +1,7 @@
 //  create database address_book.
 
 
+
 mysql> show databases;
 +--------------------+
 | Database           |
