@@ -1,6 +1,5 @@
 //  create database address_book.
 
-
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -112,3 +111,38 @@ mysql> select * from person_details;
 | Rohan     | Sharma   | Msquare | jaipur | Gujarat | 440526 | 9764237421  | rohansharma32@gmailcom |
 +-----------+----------+---------+--------+---------+--------+-------------+------------------------+
 2 rows in set (0.00 sec)
+
+
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Bill','Mark','Psquare','jodhpur','Rajasthan',430045,8556638423,'billmark25@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into person_details (FirstName,LastName,Address,City,State,Zip,PhoneNumber,Email) values
+    ->  ('Ravi','rajan','Ksquare','Shimla','Himachal Pradesh',440098,5464237421,'ravirajan56@gmailcom');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City    | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur  | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur  | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Bill      | Mark     | Psquare | jodhpur | Rajasthan        | 430045 | 8556638423  | billmark25@gmailcom    |
+| Ravi      | rajan    | Ksquare | Shimla  | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+---------+---------+------------------+--------+-------------+------------------------+
+4 rows in set (0.00 sec)
+
+
+mysql> delete from person_details where (FirstName = "Bill");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from person_details;
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+| FirstName | LastName | Address | City   | State            | Zip    | PhoneNumber | Email                  |
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+| Jojo      | Roma     | jsquare | jaipur | Gujarat          |  44052 | 8956237421  | rajvarma11@gmailcom    |
+| Rohan     | Sharma   | Msquare | jaipur | Gujarat          | 440526 | 9764237421  | rohansharma32@gmailcom |
+| Ravi      | rajan    | Ksquare | Shimla | Himachal Pradesh | 440098 | 5464237421  | ravirajan56@gmailcom   |
++-----------+----------+---------+--------+------------------+--------+-------------+------------------------+
+3 rows in set (0.00 sec)
