@@ -46,3 +46,39 @@ mysql> select database();
 | address_book |
 +--------------+
 1 row in set (0.00 sec)
+
+mysql> create table person_details
+    -> (
+    -> FirstName varchar(150) NOT NULL,
+    -> LastName varchar(150) NOT NULL,
+    -> Address varchar(250) NOT NULL,
+    -> City varchar(250) NOT NULL,
+    -> State varchar(250) NOT NULL,
+    -> ZIP int NOT NULL,
+    -> PhoneNumber long NOT NULL,
+    -> Email varchar(250) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_address_book |
++------------------------+
+| person_details         |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe person_details;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| FirstName   | varchar(150) | NO   |     | NULL    |       |
+| LastName    | varchar(150) | NO   |     | NULL    |       |
+| Address     | varchar(250) | NO   |     | NULL    |       |
+| City        | varchar(250) | NO   |     | NULL    |       |
+| State       | varchar(250) | NO   |     | NULL    |       |
+| ZIP         | int          | NO   |     | NULL    |       |
+| PhoneNumber | mediumtext   | NO   |     | NULL    |       |
+| Email       | varchar(250) | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
